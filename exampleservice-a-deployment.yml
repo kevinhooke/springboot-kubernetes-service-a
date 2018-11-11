@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exampleservice-a
+  labels:
+    app: exampleservice-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exampleservice-a
+  template:
+    metadata:
+      labels:
+        app: exampleservice-a
+    spec:
+      containers:
+      - name: exampleservice-a
+        image: kevinhooke/examplespringboot-a:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
