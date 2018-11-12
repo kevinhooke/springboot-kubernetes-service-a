@@ -1,18 +1,31 @@
+#reference: https://about.gitlab.com/2016/12/14/continuous-delivery-of-a-spring-boot-application-with-gitlab-ci-and-kubernetes/
+image: docker:latest
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  SPRING_PROFILES_ACTIVE: gitlab-ci
+
 stages:
   - build
   - package
   - deploy
 
 maven-build:
+  image: maven:3-jdk-8
   stage: build
-  script: "mvn package"
+  script: "mvn package -B"
+  artifacts:
+    paths:
+      - target/*.jar
 
 docker-build:
   stage: package
   script:
   - docker build -t kevinhooke/exampleservice-a:v1 .
-#  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.docker.com
-#  - docker push kevinhooke/exampleservice-a:v1
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.docker.com
+  - docker push kevinhooke/exampleservice-a:v1
 
 #k8s-deploy:
 #  image: google/cloud-sdk
