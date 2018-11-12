@@ -12,7 +12,7 @@ docker-build:
   script:
   - docker build -t kevinhooke/exampleservice-a:v1 .
 #  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.docker.com
-#  - docker push kevinhooke/exampleservice-a:v1
+  - docker push kevinhooke/exampleservice-a:v1
 
 #k8s-deploy:
 #  image: google/cloud-sdk
