@@ -18,10 +18,11 @@ maven-build:
 docker-build:
   stage: package
   script:
-  - docker build -t kevinhooke/examplespringboot-a:v1 .
-  - docker push kevinhooke/examplespringboot-a:v1
+  - docker build -t kevinhooke/examplespringboot-a:v1.0.0.$CI_JOB_ID .
+  - docker push kevinhooke/examplespringboot-a:v1.0.0.$CI_JOB_ID
 
 k8s-deploy:
   stage: deploy
   script:
-  - kubectl apply -f exampleservice-a-deployment.yml
+#  - kubectl apply -f exampleservice-a-deployment.yml
+  - kubectl set image deployment/exampleservice-a mycontainer=kevinhooke/examplespringboot-a:v1.0.0.$CI_JOB_ID
