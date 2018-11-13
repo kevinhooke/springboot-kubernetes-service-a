@@ -24,7 +24,7 @@ docker-build:
   - docker build -t kevinhooke/examplespringboot-a:$CI_VERSION .
   - docker push kevinhooke/examplespringboot-a:$CI_VERSION
   #tag this version also as latest
-  - docker tag kevinhooke/examplespringboot-a:latest
+  - docker tag kevinhooke/examplespringboot-a:$CI_VERSION kevinhooke/examplespringboot-a:latest
   - docker push kevinhooke/examplespringboot-a:latest
 
 k8s-deploy:
