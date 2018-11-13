@@ -1,3 +1,6 @@
+variables:
+  CI_VERSION: "v1.0.0.${CI_JOB_ID}"
+  
 stages:
   - build
   - package
@@ -18,12 +21,12 @@ maven-build:
 docker-build:
   stage: package
   script:
-  - docker build -t kevinhooke/examplespringboot-a:v1.0.0.$CI_JOB_ID .
-  - docker push kevinhooke/examplespringboot-a:v1.0.0.$CI_JOB_ID
+  - docker build -t kevinhooke/examplespringboot-a:$CI_VERSION .
+  - docker push kevinhooke/examplespringboot-a:$CI_VERSION
 
 k8s-deploy:
   stage: deploy
   script:
 #  - kubectl apply -f exampleservice-a-deployment.yml
 # deployment container=imagename:tag
-  - kubectl set image deployment/exampleservice-a exampleservice-a=kevinhooke/examplespringboot-a:v1.0.0.$CI_JOB_ID
+  - kubectl set image deployment/exampleservice-a exampleservice-a=kevinhooke/examplespringboot-a:v1.0.0.$CI_VERSION
