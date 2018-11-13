@@ -25,4 +25,5 @@ k8s-deploy:
   stage: deploy
   script:
 #  - kubectl apply -f exampleservice-a-deployment.yml
-  - kubectl set image deployment/exampleservice-a mycontainer=kevinhooke/examplespringboot-a:v1.0.0.$CI_JOB_ID
+# deployment container=imagename:tag
+  - kubectl set image deployment/exampleservice-a exampleservice-a=kevinhooke/examplespringboot-a:v1.0.0.$CI_JOB_ID
