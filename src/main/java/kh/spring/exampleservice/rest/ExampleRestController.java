@@ -22,7 +22,7 @@ public class ExampleRestController {
 	@GetMapping("/hello")
 	public HelloResult getHello() throws UnknownHostException {
 		HelloResult result = new HelloResult();
-		result.setMessage("hello2 from exampleservice-a on " + InetAddress.getLocalHost() );
+		result.setMessage("hello !updated! from exampleservice-a on " + InetAddress.getLocalHost() );
 		return result;
 	}
 	
