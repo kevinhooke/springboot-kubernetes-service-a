@@ -6,7 +6,12 @@ stages:
 maven-build:
   stage: build
   script: "mvn package"
-
+  #define artifacts for next stage
+  artifacts:
+    paths:
+    - target/exampleservice-a-0.0.1-SNAPSHOT.jar
+    expire_in: 1 day
+    
 docker-build:
   stage: package
   script:
