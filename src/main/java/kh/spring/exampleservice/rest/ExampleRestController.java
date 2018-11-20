@@ -13,7 +13,6 @@ import kh.spring.exampleservice.domain.HelloResult;
 import kh.spring.exampleservice.domain.ServiceToServiceResult;
 
 @RestController
-@RequestMapping("/example-a")
 public class ExampleRestController {
 
 	@Autowired
