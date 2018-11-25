@@ -31,7 +31,7 @@ public class ExampleRestController {
 		result.setMessageA("hello from exampleservice-a on " + InetAddress.getLocalHost() );
 		
 		//call service-b
-		HelloResult resultB = this.restTemplate.getForObject("http://exampleservice-b.default.svc.cluster.local:8080/example-b/hello", HelloResult.class);
+		HelloResult resultB = this.restTemplate.getForObject("http://exampleservice-b.default.svc.cluster.local:8080/example-b/v1/hello", HelloResult.class);
 		result.setMessageB(resultB.getMessage());
 		return result;
 	}
